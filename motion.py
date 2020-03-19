@@ -1,6 +1,7 @@
 from motion_capture.camera_controller import RaspiVidController
 from aws.AWS import AWSClient, queue_url, bucket
-from concurrent.futures import ThreadPoolExecutor
+from utils import run_darknet
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 from time import sleep
 import RPi.GPIO as GPIO
 import datetime
@@ -53,10 +54,13 @@ if __name__ == "__main__":
 	GPIO.setup(11, GPIO.IN)         #Read output from PIR motion sensor
 	#GPIO.setup(3, GPIO.OUT)         #LED output pin
 
-	aws = AWSClient()
+	aws = AWSClient(auth=True)
 	ctr = 0
 	j=0
-	pool = ThreadPoolExecutor(3)
+	thread_pool = ThreadPoolExecutor(3)
+	process_pool = ProcessPoolExecutor(1)
+	rpi_is_free = True
+	darknet_future_holder = None
 	while True:
 		i=GPIO.input(11)
 		if i==1:
@@ -65,11 +69,19 @@ if __name__ == "__main__":
 			file_name = path.format(_make_video_file())
 			vid = RaspiVidController(file_name, 3000, False,['-h', '480', '-w', '640'])
 			print "Intruder detected",i
-			#os.system("touch " + str(j))
 			_make_video(vid)
-			pool.submit(aws.upload_video_s3_send_message_sqs,file_name,bucket,queue_url)
-			print('submitted {}'.format(file_name))
-			#future.result()
+			if(rpi_is_free):	
+				rpi_is_free=False
+				s3_upload_future = thread_pool.submit(aws.upload_file_s3,file_name,bucket,"input/")
+				darknet_future = process_pool.submit(run_darknet,file_name)#execute darknet parallel
+				darknet_future_holder = darknet_future
+			else:
+				sqs_s3_upload_future = thread_pool.submit(aws.upload_video_s3_send_message_sqs,file_name,bucket,queue_url)
+				print('submitted {}'.format(file_name))
+			
+		if darknet_future_holder is not None:
+			rpi_is_free = darknet_future_holder.done()
+			darknet_future_holder = None
 
 
 			ctr += 1
