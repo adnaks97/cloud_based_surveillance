@@ -27,10 +27,10 @@ class AWSClient:
             aws_access_key_id = self.access_key_id,
             aws_secret_access_key = self.secret_access_key,
             aws_session_token = self.session_token,
-            region_name = 'us-east-1',
+            region_name = self.region_name,
             )
         else:
-            self.session = boto3.Session()
+            self.session = boto3.Session(region_name = 'us-east-1')
 
         #Initiating clients
         self.s3_client = self.session.client('s3')
