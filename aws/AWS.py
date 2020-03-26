@@ -27,7 +27,7 @@ class AWSClient:
             aws_access_key_id = self.access_key_id,
             aws_secret_access_key = self.secret_access_key,
             aws_session_token = self.session_token,
-            region_name = self.region_name,
+            region_name = 'us-east-1',
             )
         else:
             self.session = boto3.Session()
