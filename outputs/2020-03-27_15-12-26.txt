@@ -1,0 +1,115 @@
+Demo
+video file: /home/pi/cloud_based_surveillance/videos/2020-03-27_15-12-26.h264
+[2J[1;1H
+FPS:4744.7
+Objects:
+
+[2J[1;1H
+FPS:0.4
+Objects:
+
+[2J[1;1H
+FPS:1.1
+Objects:
+
+[2J[1;1H
+FPS:1.0
+Objects:
+
+[2J[1;1H
+FPS:1.0
+Objects:
+
+cup: 26%
+chair: 26%
+chair: 34%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+cup: 25%
+chair: 24%
+chair: 26%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+cup: 26%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+cup: 25%
+[2J[1;1H
+FPS:1.2
+Objects:
+
+cup: 27%
+chair: 24%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+cup: 26%
+chair: 34%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+chair: 39%
+cup: 26%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+chair: 43%
+chair: 29%
+cup: 25%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+chair: 25%
+cup: 25%
+chair: 33%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+cup: 28%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+cup: 29%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+cup: 29%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+[2J[1;1H
+FPS:1.0
+Objects:
+
+[2J[1;1H
+FPS:1.1
+Objects:
+
+[2J[1;1H
+FPS:1.1
+Objects:
+
+[2J[1;1H
+FPS:1.1
+Objects:
+
+cup: 29%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+cup: 26%
