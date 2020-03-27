@@ -63,7 +63,7 @@ if __name__ == "__main__":
 			j += 1
 			print path
 			file_name = path.format(_make_video_file())
-			vid = RaspiVidController(file_name, 3000, False,['-h', '480', '-w', '640'])
+			vid = RaspiVidController(file_name, 5000, False,['-h', '480', '-w', '640'])
 			print "Intruder detected",i
 			#os.system("touch " + str(j))
 			_make_video(vid)
