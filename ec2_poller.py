@@ -29,7 +29,7 @@ if __name__ == "__main__":
     futures = []
     aws = AWSClient(auth=False)
     instance_status = aws.get_python_object_s3(bucket, 'status')
-    InstID = 'i-017231cbb330871ed'
+    InstID = os.popen("ec2metadata --instance-id").read().strip()
     #if InstID not in instance_status.keys():
     instance_status[InstID] = 0
 
