@@ -25,7 +25,7 @@ def run_controller():
 				continue
 			if(aws.get_queue_length(queue_url)!=0):
 				print("Switching on new instance:",instance_id)
-				aws.siwtch_on_ec2_instance(instance_id)
+				aws.switch_on_ec2_instance(instance_id)
 
 
 if __name__ == "__main__":
