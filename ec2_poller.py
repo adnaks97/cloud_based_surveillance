@@ -39,8 +39,13 @@ if __name__ == "__main__":
 
     while(True):
         #do we need to limit the number of threads as well
-        proc_usage = (psutil.cpu_percent() +  psutil.cpu_percent() +  psutil.cpu_percent())/3.0
-        if(proc_usage >= 80 ):
+        proc_usage_list = []
+        for i in range(0,10):
+            proc_usage_list.append(psutil.cpu_percent())
+
+        proc_usage = proc_usage_list/(10.0)
+        print("Avg processor usage", proc_usage)
+        if(proc_usage >= 85 ):
             #set flag=1 for instance = InstID in S3
             flag = 1
             instance_status[InstID] = 1
