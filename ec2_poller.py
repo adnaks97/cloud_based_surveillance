@@ -29,18 +29,13 @@ def run_darknet(root, video_path, output_path):
     os.chdir(root)
     print('Processed with status {}'.format(status))
 
-
 if __name__ == "__main__":
     max_threads = 3
     pool = ThreadPoolExecutor(max_threads)
     futures = []
     aws = AWSClient(auth=False)
-    instance_status = aws.get_python_object_s3(bucket, 'status')
     InstID = os.popen("ec2metadata --instance-id").read().strip()
-    #if InstID not in instance_status.keys():
-
-    instance_status[InstID] = 0
-    aws.put_python_object_s3(bucket, 'status', instance_status)
+    update_instance_status(InstID,0)
     root = os.getcwd()
 
     while(True):
@@ -49,12 +44,16 @@ if __name__ == "__main__":
         if aws.get_queue_length(queue_url) == 0:
             if(check_all_threads_complete(futures)):
                 #set flag=-1 for instance = InstID in S3
-                instance_status[InstID] = -1
-                aws.put_python_object_s3(bucket, 'status', instance_status)
+                #instance_status[InstID] = -1
+                #aws.put_python_object_s3(bucket, 'status', instance_status)
+                update_instance_status(InstID,-1)
                 #aws.switch_off_ec2_instance(InstID)
                 #ec2.instances.filter(InstanceIds=InstID).stop()
         else:
-            if(len(futures)<max_threads or check_atleast_one_thread_is_free(futures)):
+            status_check = check_atleast_one_thread_is_free(futures)
+            if(len(futures)<max_threads or status_check):
+                if(status_check):
+                    update_instance_status(InstID,0)
                 os.chdir(root)
                 video_name = aws.get_message_sqs_download_video_from_s3(bucket, queue_url)
                 if video_name is None:
@@ -67,7 +66,6 @@ if __name__ == "__main__":
                 #send_video_to_sqs_s3('sample.h264',s3_bucket_name,queue_url)
                 print('submitted')
             else:
-                instance_status[InstID] = 1
-                aws.put_python_object_s3(bucket, 'status', instance_status)
+                update_instance_status(InstID,1)
 
         #print(flag)
