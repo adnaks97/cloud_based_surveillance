@@ -25,7 +25,7 @@ def run_darknet(root, video_path, output_path):
 
 
 if __name__ == "__main__":
-    pool = ThreadPoolExecutor(3)
+    pool = ThreadPoolExecutor(7)
     futures = []
     aws = AWSClient(auth=False)
     instance_status = aws.get_python_object_s3(bucket, 'status')
