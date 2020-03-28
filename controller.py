@@ -14,18 +14,18 @@ def get_random_free_ec2_id(instance_usage_map):
     return instance_id
 
 def run_controller():
-    aws = AWSClient(auth=False)
-    while(True):
-        queue_len = aws.get_queue_length(queue_url)
-        if(queue_len!=0):
+	aws = AWSClient(auth=False)
+	while(True):
+		queue_len = aws.get_queue_length(queue_url)
+		if(queue_len!=0):
 			print("Queue is not empty, so looking for a new instance to start")
-            instance_id = get_random_free_ec2_id(aws.get_python_object_s3(bucket,'status'))
-            if(instance_id==None):
+			instance_id = get_random_free_ec2_id(aws.get_python_object_s3(bucket,'status'))
+			if(instance_id==None):
 				print("Queue is not empty, but no need for new instance")
-                continue
+				continue
 			if(aws.get_queue_length(queue_url)!=0):
 				print("Switching on new instance:",instance_id)
-            	aws.siwtch_on_ec2_instance(instance_id)
+				aws.siwtch_on_ec2_instance(instance_id)
 
 
 if __name__ == "__main__":
