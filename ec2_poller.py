@@ -43,7 +43,7 @@ if __name__ == "__main__":
         for i in range(0,10):
             proc_usage_list.append(psutil.cpu_percent())
 
-        proc_usage = proc_usage_list/(10.0)
+        proc_usage = sum(proc_usage_list)/float(len(proc_usage_list))
         print("Avg processor usage", proc_usage)
         if(proc_usage >= 85 ):
             #set flag=1 for instance = InstID in S3
