@@ -24,10 +24,11 @@ def run_darknet(root, video_path, output_path):
     if os.path.exists(output_path):
         os.remove(output_path)
     cmd = "./darknet detector demo cfg/coco.data cfg/yolov3-tiny.cfg yolov3-tiny.weights {} >> {}"
+    print ("Processing {}".format(video_path.split('/'))[-1])
     status = os.system(cmd.format(video_path, output_path))
     os.system('\n')
     os.chdir(root)
-    print('Processed with status {}'.format(status))
+    print('Processed video {} with status {}'.format(video_path.split('/')[-1], status))
 
 if __name__ == "__main__":
     max_threads = 3
@@ -47,6 +48,7 @@ if __name__ == "__main__":
                 #instance_status[InstID] = -1
                 #aws.put_python_object_s3(bucket, 'status', instance_status)
                 aws.update_instance_status(InstID,-1)
+                print ("Shutdown")
                 #aws.switch_off_ec2_instance(InstID)
                 #ec2.instances.filter(InstanceIds=InstID).stop()
         else:
