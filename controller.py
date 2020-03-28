@@ -4,7 +4,7 @@ import random
 
 def get_random_free_ec2_id(instance_usage_map):
     instance_id = None
-    keys = list(instance_usage.keys())
+    keys = list(instance_usage_map.keys())
     random.shuffle(keys)
     for temp_instance_id in keys:
         if(instance_usage_map[temp_instance_id]==0):
