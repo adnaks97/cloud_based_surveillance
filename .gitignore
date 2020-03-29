@@ -2,3 +2,6 @@ config/cfg.yml
 videos/*
 *.ipynb
 .ipynb_checkpoints
+aws/.ipynb_checkpoints
+aws/*.ipynb
+
