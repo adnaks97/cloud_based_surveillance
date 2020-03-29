@@ -30,7 +30,7 @@ class AWSClient:
             region_name = self.region_name,
             )
         else:
-            self.session = boto3.Session()
+            self.session = boto3.Session(region_name = 'us-east-1')
 
         #Initiating clients
         self.s3_client = self.session.client('s3')
@@ -149,3 +149,12 @@ class AWSClient:
                                 ]
                     )
         return int(response['Attributes']['ApproximateNumberOfMessages'])
+    
+    def reset_instances_status(self):
+        instance_map = {}
+        controller_id = 'i-0912a5fdc78485f46'
+        for inst in out['Reservations']:
+            for ins in inst['Instances']:
+                if(ins['InstanceId'])!=controller_id:
+                    instance_map[ins['InstanceId']]=-1
+        self.update_instance_status(instance_map)

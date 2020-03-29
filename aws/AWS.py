@@ -156,3 +156,13 @@ class AWSClient:
                                 ]
                     )
         return int(response['Attributes']['ApproximateNumberOfMessages'])
+
+    def reset_instances_status(self):
+        instance_map = {}
+        controller_id = 'i-0912a5fdc78485f46'
+        out = self.ec2_client.describe_instances()
+        for inst in out['Reservations']:
+            for ins in inst['Instances']:
+                if(ins['InstanceId'])!=controller_id:
+                    instance_map[ins['InstanceId']]=-1
+        self.put_python_object_s3(bucket,'status',instance_map)

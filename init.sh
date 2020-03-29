@@ -1,5 +1,5 @@
 #!/bin/bash
-apt-get install python3-pip
+sudo apt-get install python3-pip
 cd /home/ubuntu/
 git clone https://github.com/adnaks97/cloud_based_surveillance.git
 cd cloud_based_surveillance
