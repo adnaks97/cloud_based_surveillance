@@ -54,7 +54,7 @@ if __name__ == "__main__":
 	GPIO.setup(11, GPIO.IN)         #Read output from PIR motion sensor
 	#GPIO.setup(3, GPIO.OUT)         #LED output pin
 
-	aws = AWSClient()
+	aws = AWSClient(auth=True)
 	ctr = 0
 	j=0
 	thread_pool = ThreadPoolExecutor(3)
@@ -68,7 +68,7 @@ if __name__ == "__main__":
 			j += 1
 			#print path
 			file_name = path.format(_make_video_file())
-			vid = RaspiVidController(file_name, 3000, False,['-h', '480', '-w', '640'])
+			vid = RaspiVidController(file_name, 5000, False)
 			print "Intruder detected",i
 			#os.system("touch " + str(j))
 			_make_video(vid)

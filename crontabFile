@@ -1,0 +1,1 @@
+@reboot sh /home/ubuntu/cloud_based_surveillance/detect.sh
