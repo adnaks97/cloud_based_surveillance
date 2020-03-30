@@ -26,7 +26,7 @@ def run_darknet(root, video_path, output_path, aws):
     os.system('\n')
     os.chdir(root)
     print('Processed video {} with status {}'.format(video_path.split('/')[-1], status))
-    if status==0:
+    if status==0 or status==34816:
         detected_objects= parse_output_for_detected_objects(output_path)
         formatted_output_objects = ",".join(detected_objects)
         video_name = video_path.split('/')[-1]
