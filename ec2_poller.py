@@ -39,7 +39,7 @@ if __name__ == "__main__":
                 #aws.put_python_object_s3(bucket, 'status', instance_status)
                 aws.update_instance_status(InstID,-1)
                 print ("Shutdown")
-                #aws.switch_off_ec2_instance(InstID)
+                aws.switch_off_ec2_instance(InstID)
                 #ec2.instances.filter(InstanceIds=InstID).stop()
         else:
             status_check = check_atleast_one_thread_is_free(futures)
