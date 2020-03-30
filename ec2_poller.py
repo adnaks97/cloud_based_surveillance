@@ -52,7 +52,7 @@ if __name__ == "__main__":
                 video_path = root + '/' + video_name
                 output_file = root + '/' + video_name.split('.')[0] + '.txt'
                 #print(root, video_path, output_file)
-                future = pool.submit(run_darknet, root, video_path, output_file)
+                future = pool.submit(run_darknet, root, video_path, output_file, aws)
                 futures.append(future)
                 #send_video_to_sqs_s3('sample.h264',s3_bucket_name,queue_url)
                 print('submitted')

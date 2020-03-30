@@ -82,7 +82,7 @@ if __name__ == "__main__":
 					input_file_path = root +"/" + file_name
 					output_file_name = file_name.split('/')[-1].split('.')[0] + '.txt'
 					output_file_path = root + "/outputs/" + output_file_name
-					darknet_future = process_pool.submit(run_darknet, root, input_file_path, output_file_path)
+					darknet_future = process_pool.submit(run_darknet, root, input_file_path, output_file_path, aws)
 					#execute darknet parallel
 					darknet_future_holder = darknet_future
 				except Exception as e:
