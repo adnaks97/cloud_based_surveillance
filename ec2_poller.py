@@ -5,6 +5,8 @@ from time import sleep
 import psutil
 import os
 
+max_threads = 1
+
 def check_all_threads_complete(futures):
     ctr = 0
     for i,future in enumerate(futures):
@@ -20,7 +22,6 @@ def check_atleast_one_thread_is_free(futures):
     return len(futures)< max_threads
 
 if __name__ == "__main__":
-    max_threads = 3
     pool = ThreadPoolExecutor(max_threads)
     futures = []
     aws = AWSClient(auth=False)
