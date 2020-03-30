@@ -1,5 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 from aws.AWS import AWSClient, bucket, queue_url
+from utils import run_darknet
 from time import sleep
 import psutil
 import os
@@ -17,18 +18,6 @@ def check_atleast_one_thread_is_free(futures):
         if future.done():
             futures.pop(i)
     return len(futures)< max_threads
-
-def run_darknet(root, video_path, output_path):
-    darknet_dir = "../darknet/"
-    os.chdir(darknet_dir)
-    if os.path.exists(output_path):
-        os.remove(output_path)
-    cmd = "./darknet detector demo cfg/coco.data cfg/yolov3-tiny.cfg yolov3-tiny.weights {} >> {}"
-    print ("Processing {}".format(video_path.split('/'))[-1])
-    status = os.system(cmd.format(video_path, output_path))
-    os.system('\n')
-    os.chdir(root)
-    print('Processed video {} with status {}'.format(video_path.split('/')[-1], status))
 
 if __name__ == "__main__":
     max_threads = 3

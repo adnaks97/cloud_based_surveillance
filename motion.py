@@ -1,6 +1,6 @@
 from motion_capture.camera_controller import RaspiVidController
 from aws.AWS import AWSClient, queue_url, bucket
-#from utils import run_darknet
+from utils import run_darknet
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 from time import sleep
 import RPi.GPIO as GPIO
@@ -10,17 +10,6 @@ import sys
 import os
 
 path = "videos/{}"
-
-def run_darknet(root, video_path, output_path):
-    darknet_dir = "../darknet/"
-    os.chdir(darknet_dir)
-    if os.path.exists(output_path):
-        os.remove(output_path)
-    cmd = "./darknet detector demo cfg/coco.data cfg/yolov3-tiny.cfg yolov3-tiny.weights {} >> {}"
-    status = os.system(cmd.format(video_path, output_path))
-    os.system('\n')
-    os.chdir(root)
-    print('Processed with status {}'.format(status))
 
 def _make_video_file():
 	now = datetime.datetime.now()
@@ -84,7 +73,7 @@ if __name__ == "__main__":
 			#os.system("touch " + str(j))
 			_make_video(vid)
 
-			if(rpi_is_free):	
+			if(rpi_is_free):
 				rpi_is_free=False
 				print('Running on RPi {}'.format(file_name))
 				s3_upload_future = thread_pool.submit(aws.upload_file_s3,file_name,bucket,"input/")
@@ -102,7 +91,7 @@ if __name__ == "__main__":
 				print('Sending to cloud {}'.format(file_name))
 				sqs_s3_upload_future = thread_pool.submit(aws.upload_video_s3_send_message_sqs,file_name,bucket,queue_url)
 				#print('submitted {}'.format(file_name))
-			
+
 		if darknet_future_holder is not None:
 			#rint("status checker:",darknet_future_holder.done())
 			rpi_is_free = darknet_future_holder.done()
