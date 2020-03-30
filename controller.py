@@ -15,6 +15,7 @@ def get_random_free_ec2_id(instance_usage_map):
 
 def run_controller():
 	aws = AWSClient(auth=False)
+    aws.reset_instances_status()
 	while(True):
 		queue_len = aws.get_queue_length(queue_url)
 		if(queue_len!=0):
