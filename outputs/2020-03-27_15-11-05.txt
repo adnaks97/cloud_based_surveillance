@@ -1,2 +1,0 @@
-Demo
-video file: /home/pi/cloud_based_surveillance/videos/2020-03-27_15-11-05.h264
