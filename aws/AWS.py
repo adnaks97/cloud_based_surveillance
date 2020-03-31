@@ -170,6 +170,8 @@ class AWSClient:
         out = self.ec2_client.describe_instances()
         for inst in out['Reservations']:
             for ins in inst['Instances']:
+                if ins['State']['Name'] == 'terminated':
+                    continue
                 if(ins['InstanceId'])!=controller_id:
                     instance_map[ins['InstanceId']]=-1
         self.put_python_object_s3(bucket,'status',instance_map)
