@@ -48,15 +48,15 @@ def run_darknet_RPi(root, video_path, output_path):
     return status, output_path, video_name
 
 def send_output_to_s3(status,output_path,video_name,aws):
-    if status==0 or status==34816:
-	print("Starting parser")
-        detected_objects= parse_output_for_detected_objects(output_path)
-	formatted_output_objects = ",".join(detected_objects)
-	now = datetime.datetime.now()
-	s = now.strftime('%Y-%m-%d_%H-%M-%S')
-	print ("Sending output to S3 started @: " + s)
-	aws.s3_client.put_object(Bucket=bucket, Key=(aws.output_folder_path+video_name),Body=formatted_output_objects)
-        #aws.put_python_object_s3(bucket, aws.output_folder_path+video_name,formatted_output_objects)
-	now = datetime.datetime.now()
-	s = now.strftime('%Y-%m-%d_%H-%M-%S')
-	print("Upload to S3 complete @: " + s)
+	if status==0 or status==34816:
+		print("Starting parser")
+		detected_objects= parse_output_for_detected_objects(output_path)
+		formatted_output_objects = ",".join(detected_objects)
+		now = datetime.datetime.now()
+		s = now.strftime('%Y-%m-%d_%H-%M-%S')
+		print ("Sending output to S3 started @: " + s)
+		aws.s3_client.put_object(Bucket=bucket, Key=(aws.output_folder_path+video_name),Body=formatted_output_objects)
+		#aws.put_python_object_s3(bucket, aws.output_folder_path+video_name,formatted_output_objects)
+		now = datetime.datetime.now()
+		s = now.strftime('%Y-%m-%d_%H-%M-%S')
+		print("Upload to S3 complete @: " + s)
