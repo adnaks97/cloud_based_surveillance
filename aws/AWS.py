@@ -160,9 +160,9 @@ class AWSClient:
         return int(response['Attributes']['ApproximateNumberOfMessages'])
 
     def push_msg_from_input_queue_to_output_queue(self):
-        msg = receive_message_queue(queue_url)
+        msg = self.receive_message_queue(queue_url)
         if msg is not None:
-            add_message_to_queue(msg,output_queue_url)
+            self.add_message_to_queue(msg,output_queue_url)
 
     def reset_instances_status(self):
         instance_map = {}
