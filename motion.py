@@ -57,8 +57,7 @@ if __name__ == "__main__":
 	aws = AWSClient(auth=True)
 	ctr = 0
 	j=0
-	thread_pool = ThreadPoolExecutor(6)
-	#upload_pool = ThreadPoolExecutor(1)
+	thread_pool = ThreadPoolExecutor(5)
 	process_pool = ProcessPoolExecutor(1)
 	darknet_future_holder = None
 	rpi_is_free = True
@@ -74,33 +73,32 @@ if __name__ == "__main__":
 			#os.system("touch " + str(j))
 			_make_video(vid)
 			print("{}: Created Video".format(file_name))
+			print("{}: Sending to Cloud and SQS".format(file_name))
+			sqs_s3_upload_future = thread_pool.submit(aws.upload_video_s3_send_message_sqs,file_name,bucket,queue_url)
+
 			if(rpi_is_free):
-				rpi_is_free=False
-				#print('Running on RPi {}'.format(file_name))
-				print("{}: Running on RPi".format(file_name))
-				s3_upload_future = thread_pool.submit(aws.upload_file_s3,file_name,bucket,"input/")
-				#print("uploaded ", file_name)
-				try:
-					input_file_path = root +"/" + file_name
-					output_file_name = file_name.split('/')[-1].split('.')[0] + '.txt'
-					output_file_path = root + "/outputs/" + output_file_name
-					darknet_future = process_pool.submit(run_darknet_RPi, root, input_file_path, output_file_path)
-					#execute darknet parallel
-					darknet_future_holder = darknet_future
-				except Exception as e:
-					print(e)
-			else:
-				print("{}: Sending to Cloud".format(file_name))
-				sqs_s3_upload_future = thread_pool.submit(aws.upload_video_s3_send_message_sqs,file_name,bucket,queue_url)
-				#print('submitted {}'.format(file_name))
+				rpi_file_name = aws.receive_message_queue(queue_url)
+				if rpi_file_name is not None:
+					print("{}: Running on RPi".format(rpi_file_name))
+					rpi_is_free=False
+					try:
+						input_file_path = root +"/videos/" + rpi_file_name
+						output_file_name = rpi_file_name.split('.')[0] + '.txt'
+						output_file_path = root + "/outputs/" + output_file_name
+						darknet_future = process_pool.submit(run_darknet_RPi, root, input_file_path, output_file_path)
+						#execute darknet parallel
+						darknet_future_holder = darknet_future
+					except Exception as e:
+						print(e)
+
 
 		if darknet_future_holder is not None:
 			#rint("status checker:",darknet_future_holder.done())
 			rpi_is_free = darknet_future_holder.done()
-            		if(rpi_is_free):
+            if(rpi_is_free):
 				print ("RPi freed")
-                		status, output_path, video_name = darknet_future_holder.result()
-                		print ("Result fetched", status)
+                status, output_path, video_name = darknet_future_holder.result()
+                print ("Result fetched", status)
 				output_future = thread_pool.submit(send_output_to_s3,status,output_path,video_name,aws)
 				darknet_future_holder = None
 			ctr += 1
