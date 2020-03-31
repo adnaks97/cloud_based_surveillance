@@ -1,9 +1,8 @@
 import boto3
 import yaml
 import sys
-from botocore.exceptions import ClientError
 import pickle
-
+from botocore.exceptions import ClientError
 
 queue_url = 'https://queue.amazonaws.com/684896435815/videos_queue'
 bucket = 'cse546project1svv'
@@ -126,19 +125,12 @@ class AWSClient:
             return response
         except ClientError as e:
             return None
-
+            
     #----------- USER FACING FUNCTIONS ---------------------
-
-    def update_instance_status(self,instance_id,status):
-        instance_status = self.get_python_object_s3(bucket, 'status')
-        instance_status[instance_id]=status
-        self.put_python_object_s3(bucket, 'status', instance_status)
-        return instance_status
-
     def upload_video_s3_send_message_sqs(self, video_file_name,bucket,queue_url):
         upload_status = self.upload_file_s3(video_file_name, bucket, self.input_folder_path)
         if(upload_status):
-            self.add_message_to_queue(video_file_name.split('/')[-1],queue_url)
+            self.add_message_to_queue(video_file_name,queue_url)
             return True
         return False
 
@@ -157,13 +149,12 @@ class AWSClient:
                                 ]
                     )
         return int(response['Attributes']['ApproximateNumberOfMessages'])
-
+    
     def reset_instances_status(self):
         instance_map = {}
         controller_id = 'i-0912a5fdc78485f46'
-        out = self.ec2_client.describe_instances()
         for inst in out['Reservations']:
             for ins in inst['Instances']:
                 if(ins['InstanceId'])!=controller_id:
                     instance_map[ins['InstanceId']]=-1
-        self.put_python_object_s3(bucket,'status',instance_map)
+        self.update_instance_status(instance_map)
