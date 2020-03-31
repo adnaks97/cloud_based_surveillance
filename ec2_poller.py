@@ -1,5 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor
-from aws.AWS import AWSClient, bucket, queue_url
+from aws.AWS import AWSClient, bucket, output_queue_url
 from utils import run_darknet
 from time import sleep
 import psutil
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     while(True):
         #do we need to limit the number of threads as well
 
-        if aws.get_queue_length(queue_url) == 0:
+        if aws.get_queue_length(output_queue_url) == 0:
             if(check_all_threads_complete(futures)):
                 #set flag=-1 for instance = InstID in S3
                 #instance_status[InstID] = -1
@@ -47,7 +47,7 @@ if __name__ == "__main__":
                 if(status_check):
                     aws.update_instance_status(InstID,0)
                 os.chdir(root)
-                video_name = aws.get_message_sqs_download_video_from_s3(bucket, queue_url)
+                video_name = aws.get_message_sqs_download_video_from_s3(bucket, output_queue_url)
                 if video_name is None:
                     continue
                 video_path = root + '/' + video_name

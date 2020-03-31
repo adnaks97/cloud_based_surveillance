@@ -1,5 +1,5 @@
 import os
-from aws.AWS import AWSClient, queue_url, bucket
+from aws.AWS import AWSClient, queue_url, bucket, output_queue_url
 import random
 
 def get_random_free_ec2_id(instance_usage_map):
@@ -26,7 +26,9 @@ def run_controller():
 				continue
 			if(aws.get_queue_length(queue_url)!=0):
 				print("Switching on new instance:",instance_id)
-				aws.switch_on_ec2_instance(instance_id)
+                aws.push_msg_from_input_queue_to_output_queue()
+                aws.update_instance_status(instance_id,1)
+                aws.switch_on_ec2_instance(instance_id)
 
 
 if __name__ == "__main__":

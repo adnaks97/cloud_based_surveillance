@@ -6,6 +6,7 @@ import pickle
 
 
 queue_url = 'https://queue.amazonaws.com/684896435815/videos_queue'
+output_queue_url = 'https://sqs.us-east-1.amazonaws.com/684896435815/output_queue'
 bucket = 'cse546project1svv'
 
 class AWSClient:
@@ -157,6 +158,11 @@ class AWSClient:
                                 ]
                     )
         return int(response['Attributes']['ApproximateNumberOfMessages'])
+
+    def push_msg_from_input_queue_to_output_queue(self):
+        msg = receive_message_queue(queue_url)
+        if msg is not None:
+            add_message_to_queue(msg,output_queue_url)
 
     def reset_instances_status(self):
         instance_map = {}
