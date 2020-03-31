@@ -17,7 +17,7 @@ if __name__ == "__main__":
     while(True):
         #do we need to limit the number of threads as well
         
-        video_name = aws.get_message_sqs_download_video_from_s3(output_queue_url)
+        video_name = aws.get_message_sqs_download_video_from_s3(bucket, output_queue_url)
 
         if video_name is None:
             #aws.update_instance_status(InstID,-1)
