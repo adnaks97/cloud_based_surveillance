@@ -5,6 +5,37 @@ from time import sleep
 import psutil
 import os
 
+
+if __name__ == "__main__":
+    #pool = ThreadPoolExecutor(max_threads)
+    #futures = []
+    aws = AWSClient(auth=False)
+    InstID = os.popen("ec2metadata --instance-id").read().strip()
+    aws.update_instance_status(InstID,0)
+    root = os.getcwd()
+
+    while(True):
+        #do we need to limit the number of threads as well
+        
+        video_name = self.get_message_sqs_download_video_from_s3(output_queue_url)
+
+        if video_name is None:
+            #aws.update_instance_status(InstID,-1)
+            print ("Shutdown")
+            aws.switch_off_ec2_instance(InstID)
+            #ec2.instances.filter(InstanceIds=InstID).stop()
+        else:
+            os.chdir(root)
+            video_path = root + '/' + video_name
+            output_file = root + '/' + video_name.split('.')[0] + '.txt'
+            #print(root, video_path, output_file)
+            run_darknet(root, video_path, output_file, aws)
+            print('submitted')
+
+        #print(flag)
+
+
+'''
 max_threads = 1
 
 def check_all_threads_complete(futures):
@@ -61,3 +92,4 @@ if __name__ == "__main__":
                 aws.update_instance_status(InstID,1)
 
         #print(flag)
+'''
