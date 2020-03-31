@@ -1,8 +1,9 @@
 import boto3
 import yaml
 import sys
-import pickle
 from botocore.exceptions import ClientError
+import pickle
+
 
 queue_url = 'https://queue.amazonaws.com/684896435815/videos_queue'
 bucket = 'cse546project1svv'
@@ -137,7 +138,7 @@ class AWSClient:
     def upload_video_s3_send_message_sqs(self, video_file_name,bucket,queue_url):
         upload_status = self.upload_file_s3(video_file_name, bucket, self.input_folder_path)
         if(upload_status):
-            self.add_message_to_queue(video_file_name,queue_url)
+            self.add_message_to_queue(video_file_name.split('/')[-1],queue_url)
             return True
         return False
 

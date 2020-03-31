@@ -1,0 +1,150 @@
+Demo
+video file: /home/pi/cloud_based_surveillance/videos/2020-03-19_00-05-20.h264
+[2J[1;1H
+FPS:5242.9
+Objects:
+
+[2J[1;1H
+FPS:0.7
+Objects:
+
+[2J[1;1H
+FPS:1.0
+Objects:
+
+[2J[1;1H
+FPS:1.0
+Objects:
+
+bottle: 54%
+person: 36%
+bottle: 36%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+bottle: 63%
+person: 43%
+bottle: 38%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+bottle: 68%
+person: 50%
+bottle: 34%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+bottle: 69%
+person: 61%
+bottle: 27%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+bottle: 67%
+person: 65%
+bottle: 24%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 70%
+bottle: 64%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 75%
+bottle: 61%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+person: 79%
+bottle: 61%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+person: 79%
+bottle: 60%
+[2J[1;1H
+FPS:1.1
+Objects:
+
+person: 79%
+bottle: 62%
+bottle: 25%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 77%
+bottle: 63%
+bottle: 26%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 76%
+bottle: 65%
+bottle: 25%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+bottle: 65%
+person: 65%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+bottle: 66%
+person: 56%
+bottle: 27%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+bottle: 63%
+person: 49%
+bottle: 29%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+bottle: 62%
+person: 53%
+bottle: 29%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+bottle: 61%
+person: 60%
+bottle: 28%
+[2J[1;1H
+FPS:0.8
+Objects:
+
+bottle: 64%
+person: 65%
+bottle: 28%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+person: 69%
+bottle: 66%
+bottle: 33%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+bottle: 67%
+person: 68%
+bottle: 38%
+chair: 25%

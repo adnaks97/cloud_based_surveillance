@@ -1,0 +1,107 @@
+Demo
+video file: /home/pi/cloud_based_surveillance/videos/2020-03-18_23-53-57.h264
+[2J[1;1H
+FPS:4025.2
+Objects:
+
+[2J[1;1H
+FPS:0.7
+Objects:
+
+[2J[1;1H
+FPS:0.9
+Objects:
+
+[2J[1;1H
+FPS:0.8
+Objects:
+
+person: 43%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+person: 43%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+person: 46%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+person: 47%
+[2J[1;1H
+FPS:1.0
+Objects:
+
+person: 45%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 42%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 40%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 38%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 40%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 39%
+cell phone: 26%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 44%
+cell phone: 27%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 47%
+cell phone: 25%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 52%
+cell phone: 25%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 51%
+cell phone: 30%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 50%
+cell phone: 33%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 48%
+cell phone: 35%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 44%
+cell phone: 36%

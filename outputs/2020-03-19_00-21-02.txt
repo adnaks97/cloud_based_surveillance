@@ -1,0 +1,86 @@
+Demo
+video file: /home/pi/cloud_based_surveillance/videos/2020-03-19_00-21-02.h264
+[2J[1;1H
+FPS:4262.5
+Objects:
+
+[2J[1;1H
+FPS:0.6
+Objects:
+
+[2J[1;1H
+FPS:0.9
+Objects:
+
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 35%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 49%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 55%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 55%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 42%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 27%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+[2J[1;1H
+FPS:0.9
+Objects:
+
+[2J[1;1H
+FPS:0.9
+Objects:
+
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 29%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 30%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 32%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 38%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 33%
+[2J[1;1H
+FPS:0.9
+Objects:
+
+person: 28%
