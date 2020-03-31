@@ -95,11 +95,11 @@ if __name__ == "__main__":
 
 		if darknet_future_holder is not None:
 			#rint("status checker:",darknet_future_holder.done())
-			rpi_is_free = darknet_future_holder.done()
-            		if(rpi_is_free):
-                		status, output_path, video_name = darknet_future_holder.result()
-                		output_future = thread_pool.submit(send_output_to_s3,status,output_path,video_name,aws)
-				darknet_future_holder = None
+    		rpi_is_free = darknet_future_holder.done()
+            if(rpi_is_free):
+                status, output_path, video_name = darknet_future_holder.result()
+                output_future = thread_pool.submit(send_output_to_s3,status,output_path,video_name,aws)
+                darknet_future_holder = None
 			ctr += 1
 			#GPIO.output(3, 0)  #Turn OFF LED
 			#time.sleep(1)

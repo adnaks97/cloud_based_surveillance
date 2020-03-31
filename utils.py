@@ -50,6 +50,8 @@ def send_output_to_s3(status,output_path,video_name,aws):
     if status==0 or status==34816:
         detected_objects= parse_output_for_detected_objects(output_path)
         formatted_output_objects = ",".join(detected_objects)
-	print ("Result serialized")
+        s = now.strftime('%Y-%m-%d_%H-%M-%S')
+        print ("Sending output to S3 started @: " + s)
         aws.put_python_object_s3(bucket, aws.output_folder_path+video_name,formatted_output_objects)
-	print("RPi upload complete")
+        s = now.strftime('%Y-%m-%d_%H-%M-%S')
+        print("Upload to S3 complete @: " + s)
