@@ -6,3 +6,4 @@ aws/.ipynb_checkpoints
 aws/*.ipynb
 aws/__pycache__
 outputs/*
+.idea/*
